@@ -96,13 +96,3 @@ class References(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
     internalRef = models.FloatField(max_length=4)
     externalRef = models.FloatField(max_length=4)
-
-
-
-
-
-
-
-    
-    
-
