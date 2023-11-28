@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Exclusão</title>
+</head>
+<body>
+    <h1>Confirmar Exclusão</h1>
+
+    <p>Tem certeza de que deseja excluir a fazenda "{{ farm.name }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Sim, excluir" />
+    </form>
+
+    <a href="{% url 'app1:farm_list' %}">Cancelar</a>
+</body>
+</html>

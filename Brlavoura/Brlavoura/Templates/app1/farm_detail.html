@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes da Fazenda</title>
+</head>
+<body>
+    <h1>Detalhes da Fazenda: {{ farm.name }}</h1>
+    <p>Geolocalização: {{ farm.geolocalization }}</p>
+
+    <h2>Lavouras</h2>
+    <a href="{% url 'app1:tillage_create' farm.pk %}">Criar Nova Lavoura</a>
+    <ul>
+        {% for tillage in farm.harvests.all %}
+            <li>
+                Lavoura: {{ tillage.localization }}
+                <!-- Adicione mais detalhes da lavoura aqui se necessário -->
+            </li>
+        {% empty %}
+            <li>Nenhuma lavoura cadastrada nesta fazenda.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'app1:farm_edit' farm.pk %}">Editar Fazenda</a> | 
+    <a href="{% url 'app1:farm_delete' farm.pk %}">Deletar Fazenda</a>
+
+    <a href="{% url 'app1:farm_list' %}">Voltar para a lista de fazendas</a>
+</body>
+</html>

@@ -31,18 +31,18 @@ def farm_edit(request, pk):
             return redirect('farm_list')
     else:
         form = FarmForm(instance=farm)
-    return render(request, 'farm_form.html', {'form': form})
+    return render(request, 'app1/farm_form.html', {'form': form})
 
 
 def farm_delete(request, pk):
     farm = get_object_or_404(Farm, pk=pk)
     if request.method == 'POST':
         farm.delete()
-        return redirect('farm_list')
-    return render(request, 'farm_confirm_delete.html', {'farm': farm})
+        return redirect('/farms/')
+    return render(request, 'app1/farm_confirm_delete.html', {'farm': farm})
 
 def farm_detail(request, pk):
     farm = get_object_or_404(Farm, pk=pk)
-    return render(request, 'farm_detail.html', {'farm': farm})
+    return render(request, 'app1/farm_detail.html', {'farm': farm})
 
 
