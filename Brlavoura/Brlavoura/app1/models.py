@@ -11,6 +11,7 @@ class Farm(models.Model):
     
 class Harvest(models.Model):
     localization = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     farm = models.ForeignKey(Farm,
                                null=False, 
                                on_delete=models.CASCADE,
