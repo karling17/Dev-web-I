@@ -17,10 +17,10 @@ def farm_create(request):
         form = FarmForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('farm_list')
+            return redirect('/farms')
     else:
         form = FarmForm()
-    return render(request, 'farm_form.html', {'form': form})
+    return render(request, 'app1/farm_form.html', {'form': form})
 
 def farm_edit(request, pk):
     farm = get_object_or_404(Farm, pk=pk)
