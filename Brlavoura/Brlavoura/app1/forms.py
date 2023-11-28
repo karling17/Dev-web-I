@@ -1,9 +1,8 @@
 from django import forms
+from .models import Farm
 
-from app1.models import Users
 
-class Userform(forms.ModelForm):
-    class meta:
-        model: Users
-        fields: '__all__'
-        
+class FarmForm(forms.ModelForm):
+    class Meta:
+        model = Farm
+        fields = ['name', 'geolocalization']

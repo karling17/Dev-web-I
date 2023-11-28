@@ -44,7 +44,7 @@ class Tillage(models.Model):
 class Pictures(models.Model): 
     timestamp = models.DateTimeField(auto_now=True)
     notes = models.CharField(max_length=400)
-    file = models.CharField(max_length=100)
+    filelink = models.CharField(max_length=400)
     tillagedId = models.ForeignKey(Tillage,
                                    null=False,
                                   on_delete=models.CASCADE,
@@ -53,7 +53,7 @@ class Pictures(models.Model):
 
 class Humidity(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
-    humidity = models.FloatField(max_length=4)
+    humidity = models.FloatField()
     tillageId = models.ForeignKey(Tillage,
                                   null=False,
                                   on_delete=models.CASCADE,
