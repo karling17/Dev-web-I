@@ -1,6 +1,5 @@
 from django.urls import path 
 from app1 import views
-from . import views
 
 app_name = 'brlavoura'
 

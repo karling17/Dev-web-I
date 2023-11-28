@@ -10,7 +10,7 @@ from django.urls import reverse
 
 def farm_list(request):
     farms = Farm.objects.all()
-    return render(request, 'farm_list.html', {'farms': farms})
+    return render(request, 'app1/farm_list.html', {'farms': farms})
 
 def farm_create(request):
     if request.method == 'POST':
