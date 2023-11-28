@@ -10,4 +10,4 @@ class FarmForm(forms.ModelForm):
 class HarvestForm(forms.ModelForm):
     class Meta:
         model = Harvest
-        fields = ['name','localization']
+        fields = ['localization']

@@ -11,7 +11,7 @@
     <h2>Lavouras</h2>
     <a href="{% url 'app1:harvest_create' farm.pk %}">Criar Nova Lavoura</a>
     <ul>
-        {% for harvest in farm.harvests.all %}
+        {% for Harvest in farm.harvests.all %}
             <li>
                 Lavoura: {{ Harvest.localization }}
                 <!-- Adicione mais detalhes da lavoura aqui se necessário -->
