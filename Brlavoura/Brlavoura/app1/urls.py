@@ -13,4 +13,6 @@ urlpatterns = [
     path('farms/<int:farm_id>/harvests/<int:harvest_id>/', views.harvest_detail, name='harvest_detail'),
     path('farms/<int:farm_id>/harvests/<int:harvest_id>/delete/', views.harvest_delete, name='harvest_delete'),
     path('farms/<int:farm_id>/harvests/<int:harvest_id>/create_tillage/', views.tillage_create, name='tillage_create'),
+     path('tillage/<int:tillage_id>/add_humidity/', views.add_humidity, name='add_humidity'),
+    path('tillage/<int:tillage_id>/', views.tillage_detail, name='tillage_detail'),
 ]

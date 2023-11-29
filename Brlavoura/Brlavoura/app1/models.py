@@ -54,11 +54,8 @@ class Pictures(models.Model):
 class Humidity(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
     humidity = models.FloatField()
-    tillageId = models.ForeignKey(Tillage,
-                                  null=False,
-                                  on_delete=models.CASCADE,
-                                  related_name='tillages'
-                                  )
+    tillage = models.ForeignKey(Tillage, on_delete=models.CASCADE, related_name='humidities')
+
     
 class References(models.Model):
     timestamp = models.DateTimeField(auto_now=True)

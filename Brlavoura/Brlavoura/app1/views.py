@@ -1,9 +1,11 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from app1.models import Tillage, Farm, Harvest
+from app1.models import Tillage, Farm, Harvest, Humidity
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import FarmForm, HarvestForm, TillageForm
 from django.urls import reverse
+import random
+from django.utils import timezone
 
 
 # Create your views here.
@@ -84,3 +86,16 @@ def tillage_create(request, farm_id, harvest_id):
     else:
         form = TillageForm()
     return render(request, 'app1/tillage_form.html', {'form': form, 'harvest': harvest})
+
+def add_humidity(request, tillage_id):
+    tillage = get_object_or_404(Tillage, pk=tillage_id)
+    humidity_value = random.uniform(30, 50)  # Gera um valor aleatório entre 30 e 50
+    Humidity.objects.create(tillage=tillage, humidity=humidity_value, timestamp=timezone.now())
+
+    # Redireciona para a visualização do detalhe da safra
+    return redirect('app1:tillage_detail', tillage_id=tillage_id)
+
+def tillage_detail(request, tillage_id):
+    tillage = get_object_or_404(Tillage, pk=tillage_id)
+    humidities = tillage.humidities.all()  # Usando o related_name definido
+    return render(request, 'tillage_detail.html', {'tillage': tillage, 'humidities': humidities})

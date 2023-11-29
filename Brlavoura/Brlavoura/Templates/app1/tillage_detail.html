@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes da Safra</title>
+</head>
+<body>
+    <h1>Detalhes da Safra: {{ tillage.id }}</h1>
+
+    <h2>Histórico de Umidade</h2>
+    <ul>
+        {% for humidity in humidities %}
+            <li>{{ humidity.timestamp }} - {{ humidity.humidity }}%</li>
+        {% empty %}
+            <li>Nenhum registro de umidade encontrado.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'app1:add_humidity' tillage_id=tillage.id %}">Adicionar Registro de Umidade</a>
+    <a href="{% url 'app1:harvest_detail' farm_id=tillage.harvest.farm_id harvest_id=tillage.harvest_id %}">Voltar para a Lavoura</a>
+</body>
+</html>
