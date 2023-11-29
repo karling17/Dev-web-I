@@ -21,13 +21,55 @@
     <h1 style="margin-left: 5%; margin-top: 15px;">Detalhes da Safra de {{ tillage.startdate }}</h1>
 
 
-    <ul>
+    {% comment %} <ul>
         {% for humidity in humidities %}
             <li>{{ humidity.timestamp }} - {{ humidity.humidity }}%</li>
         {% empty %}
             <li>Nenhum registro de umidade encontrado.</li>
         {% endfor %}
-    </ul>
+    </ul> {% endcomment %}
+
+    <div style=" padding-left: 5%; padding-right: 5% ; margin-top: 30px;" id="humidityTable"></div>
+
+    <script>
+        function createHumidityTable() {
+            var table = document.createElement('table');
+            table.className = 'table table-striped table-hover';
+            var thead = document.createElement('thead');
+            var tbody = document.createElement('tbody');
+            var headRow = document.createElement('tr');
+            
+            ['Timestamp', 'Umidade (%)'].forEach(function(el) {
+                var th=document.createElement('th');
+                th.appendChild(document.createTextNode(el));
+                headRow.appendChild(th);
+            });
+            
+            thead.appendChild(headRow);
+            table.appendChild(thead); 
+
+            var time = new Date();
+            for (var i = 0; i < 20; i++) {
+                var tr = document.createElement('tr');
+                var td1 = document.createElement('td');
+                var td2 = document.createElement('td');
+                
+                td1.appendChild(document.createTextNode(time.toLocaleString()));
+                td2.appendChild(document.createTextNode((Math.random() * (50 - 30) + 30).toFixed(2) + '%'));
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tbody.appendChild(tr);
+
+                time.setMinutes(time.getMinutes() - 5);
+            }
+
+            table.appendChild(tbody);             
+            document.getElementById('humidityTable').appendChild(table);
+        }
+
+        createHumidityTable();
+    </script>
 
     
     <a style="margin-left: 5%; margin-top: 15px;" href="{% url 'app1:harvest_detail' farm_id=tillage.harvestId.farm.pk harvest_id=tillage.harvestId.pk %}" type="button" class="btn btn-primary">Voltar para a Lavoura</a>
