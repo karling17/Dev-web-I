@@ -16,7 +16,8 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'app1:add_humidity' tillage_id=tillage.id %}">Adicionar Registro de Umidade</a>
-    <a href="{% url 'app1:harvest_detail' farm_id=tillage.harvest.farm_id harvest_id=tillage.harvest_id %}">Voltar para a Lavoura</a>
+    
+    <a href="{% url 'app1:harvest_detail' farm_id=tillage.harvestId.farm.pk harvest_id=tillage.harvestId.pk %}">Voltar para a Lavoura</a>
+
 </body>
 </html>

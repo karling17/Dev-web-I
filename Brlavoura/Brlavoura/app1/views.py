@@ -90,7 +90,7 @@ def tillage_create(request, farm_id, harvest_id):
 def add_humidity(request, tillage_id):
     tillage = get_object_or_404(Tillage, pk=tillage_id)
     humidity_value = random.uniform(30, 50)  # Gera um valor aleatório entre 30 e 50
-    Humidity.objects.create(tillage=tillage, humidity=humidity_value, timestamp=timezone.now())
+    Humidity.objects.create(tillage_id=tillage_id, humidity=humidity_value, timestamp=timezone.now())
 
     # Redireciona para a visualização do detalhe da safra
     return redirect('app1:tillage_detail', tillage_id=tillage_id)
