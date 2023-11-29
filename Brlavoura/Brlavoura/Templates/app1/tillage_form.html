@@ -1,18 +1,31 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Criar Safra</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{% static '/app1/img/style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <h1>Criar Safra em {{ harvest.localization }}</h1>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="{% static '/app1/img/logo.png' %}"  alt="Logo" width="30"  class="d-inline-block align-text-top">
+            Vineto Sicuro
+          </a>
+        </div>
+      </nav>
+    <h1 style="margin-top: 10px;">Criar Safra em {{ harvest.localization }}</h1>
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Salvar Safra</button>
+        <button type="submit" type="submit" class="btn btn-outline-success">Salvar Safra</button>
     </form>
 
-    <a href="{% url 'app1:harvest_detail' farm_id=harvest.farm_id harvest_id=harvest.pk %}">Voltar para a lavoura</a>
+    <a style="margin-top: 10px;" href="{% url 'app1:harvest_detail' farm_id=harvest.farm_id harvest_id=harvest.pk %}" type="button" class="btn btn-outline-secondary">Voltar para a lavoura</a>
 </body>
 </html>
