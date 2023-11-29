@@ -1,30 +1,55 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Detalhes da Fazenda</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{% static '/app1/img/style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <h1>Detalhes da Fazenda: {{ farm.name }}</h1>
-    <p>Geolocalização: {{ farm.geolocalization }}</p>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="{% static '/app1/img/logo.png' %}"  alt="Logo" width="30"  class="d-inline-block align-text-top">
+            Vineto Sicuro
+          </a>
+        </div>
+      </nav>
+    <h1 style="margin-top: 10px; margin-left: 5%;" >{{ farm.name }}</h1>
+    <p style="margin-top: 10px; margin-left: 5%;">Geolocalização: {{ farm.geolocalization }}</p>
 
-    <h2>Lavouras</h2>
-    <a href="{% url 'app1:harvest_create' farm.pk %}">Criar Nova Lavoura</a>
-    <ul>
-        {% for harvest in farm.harvests.all %}
-            <li>
-                Lavoura: {{ harvest.localization }}
-                <a href="{% url 'app1:harvest_detail' farm.pk harvest.pk %}">Detalhes</a> |
-                <a href="{% url 'app1:harvest_delete' farm.pk harvest.pk %}">Deletar</a>
-            </li>
-        {% empty %}
-            <li>Nenhuma lavoura cadastrada nesta fazenda.</li>
-        {% endfor %}
-    </ul>
+    <a href="{% url 'app1:harvest_create' farm.pk %}" style="margin-top: 10px; margin-left: 5%;" type="button" class="btn btn-outline-success">Criar Nova Lavoura</a>
 
-    <a href="{% url 'app1:farm_edit' farm.pk %}">Editar Fazenda</a> | 
-    <a href="{% url 'app1:farm_delete' farm.pk %}">Deletar Fazenda</a>
+    <div style=" padding-left: 5%; padding-right: 5% ; margin-top: 30px;">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Lavouras</th>
+              <th scope="col">Opções</th>
+            </tr>
+          </thead>
+          {% for harvest in farm.harvests.all %}
+            <tr>
+              <td>{{ harvest.localization }}</td>
+              <td> 
+                <a href="{% url 'app1:harvest_detail' farm.pk harvest.pk %}" type="button" class="btn btn-outline-primary">Detalhes</a> 
+                <a href="{% url 'app1:harvest_delete' farm.pk harvest.pk %}" type="button" class="btn btn-outline-danger">Deletar</a>
+              </td>
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
 
-    <a href="{% url 'app1:farm_list' %}">Voltar para a lista de fazendas</a>
+    
+    <div  style="margin-left: 5%; margin-top: 25%" id="opcoesfazenda">
+    
+    <a href="{% url 'app1:farm_edit' farm.pk %}" type="button" class="btn btn-secondary">Editar Fazenda</a>  
+    <a href="{% url 'app1:farm_delete' farm.pk %}" type="button" class="btn btn-danger">Deletar Fazenda</a>
+
+    <a href="{% url 'app1:farm_list' %}" type="button" class="btn btn-primary">Voltar para minhas fazendas</a>
+    <div>
 </body>
 </html>
