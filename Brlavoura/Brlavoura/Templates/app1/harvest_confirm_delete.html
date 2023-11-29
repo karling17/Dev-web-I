@@ -1,17 +1,29 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{% static '/app1/img/style.css' %}" rel="stylesheet">
     <title>Confirmar Exclusão da Lavoura</title>
 </head>
 <body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="{% static '/app1/img/logo.png' %}"  alt="Logo" width="30"  class="d-inline-block align-text-top">
+            Vineto Sicuro
+          </a>
+        </div>
+      </nav>
     <h1>Excluir Lavoura: {{ harvest.localization }}</h1>
     <form method="post">
         {% csrf_token %}
         <p>Tem certeza de que deseja excluir esta lavoura?</p>
-        <input type="submit" value="Excluir">
+        <input type="submit" class="btn btn-outline-danger" value="Sim, excluir" value="Excluir">
     </form>
 
-    <a href="{% url 'app1:harvest_detail' farm.pk harvest.pk %}">Cancelar</a>
+    <a style="margin-top: 5px;" href="{% url 'app1:harvest_detail' farm.pk harvest.pk %}" type="button" class="btn btn-outline-primary">Cancelar</a>
 </body>
 </html>

@@ -1,13 +1,26 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Detalhes da Safra</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="{% static '/app1/img/style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <h1>Detalhes da Safra: {{ tillage.id }}</h1>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="{% static '/app1/img/logo.png' %}"  alt="Logo" width="30"  class="d-inline-block align-text-top">
+            Vineto Sicuro
+          </a>
+        </div>
+      </nav>
+    <h1 style="margin-left: 5%; margin-top: 15px;">Detalhes da Safra de {{ tillage.startdate }}</h1>
 
-    <h2>Histórico de Umidade</h2>
+
     <ul>
         {% for humidity in humidities %}
             <li>{{ humidity.timestamp }} - {{ humidity.humidity }}%</li>
@@ -17,7 +30,7 @@
     </ul>
 
     
-    <a href="{% url 'app1:harvest_detail' farm_id=tillage.harvestId.farm.pk harvest_id=tillage.harvestId.pk %}">Voltar para a Lavoura</a>
+    <a style="margin-left: 5%; margin-top: 15px;" href="{% url 'app1:harvest_detail' farm_id=tillage.harvestId.farm.pk harvest_id=tillage.harvestId.pk %}" type="button" class="btn btn-primary">Voltar para a Lavoura</a>
 
 </body>
 </html>
