@@ -98,4 +98,4 @@ def add_humidity(request, tillage_id):
 def tillage_detail(request, tillage_id):
     tillage = get_object_or_404(Tillage, pk=tillage_id)
     humidities = tillage.humidities.all()  # Usando o related_name definido
-    return render(request, 'tillage_detail.html', {'tillage': tillage, 'humidities': humidities})
+    return render(request, 'app1/tillage_detail.html', {'tillage': tillage, 'humidities': humidities})

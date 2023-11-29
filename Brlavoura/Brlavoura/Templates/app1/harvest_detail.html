@@ -15,6 +15,7 @@
         {% for tillage in harvest.tillages.all %}
             <li>
                 Safra: {{ tillage.startdate }} até {{ tillage.enddate }}
+                <a href="{% url 'app1:tillage_detail' tillage_id=tillage.pk %}">Detalhes da Safra</a>
                 <!-- Adicione mais detalhes da safra aqui se necessário -->
             </li>
         {% empty %}
@@ -22,6 +23,8 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'app1:farm_detail' farm.pk %}">Voltar para a fazenda</a>
+    {% comment %} <a href="{% url 'app1:farm_detail' farm_id=harvest.farm_id %}">Voltar para a fazenda</a> {% endcomment %}
+    <a href="{% url 'app1:farm_detail' pk=harvest.farm_id %}">Voltar para a fazenda</a>
+
 </body>
 </html>
