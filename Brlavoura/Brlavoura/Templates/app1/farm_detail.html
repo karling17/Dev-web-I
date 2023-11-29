@@ -11,10 +11,11 @@
     <h2>Lavouras</h2>
     <a href="{% url 'app1:harvest_create' farm.pk %}">Criar Nova Lavoura</a>
     <ul>
-        {% for Harvest in farm.harvests.all %}
+        {% for harvest in farm.harvests.all %}
             <li>
-                Lavoura: {{ Harvest.localization }}
-                <!-- Adicione mais detalhes da lavoura aqui se necessário -->
+                Lavoura: {{ harvest.localization }}
+                <a href="{% url 'app1:harvest_detail' farm.pk harvest.pk %}">Detalhes</a> |
+                <a href="{% url 'app1:harvest_delete' farm.pk harvest.pk %}">Deletar</a>
             </li>
         {% empty %}
             <li>Nenhuma lavoura cadastrada nesta fazenda.</li>

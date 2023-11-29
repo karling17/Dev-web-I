@@ -57,3 +57,17 @@ def harvest_create(request, farm_id):
     else:
         form = HarvestForm()
     return render(request, 'app1/harvest_form.html', {'form': form, 'farm': farm})
+
+def harvest_detail(request, farm_id, harvest_id):
+    farm = get_object_or_404(Farm, pk=farm_id)
+    harvest = get_object_or_404(Harvest, pk=harvest_id, farm=farm)
+    # Adicione aqui a lógica para buscar as safras associadas, se necessário
+    return render(request, 'app1/harvest_detail.html', {'farm': farm, 'harvest': harvest})
+
+def harvest_delete(request, farm_id, harvest_id):
+    farm = get_object_or_404(Farm, pk=farm_id)
+    harvest = get_object_or_404(Harvest, pk=harvest_id, farm=farm)
+    if request.method == 'POST':
+        harvest.delete()
+        return redirect('app1:farm_detail', pk=farm_id)
+    return render(request, 'app1/harvest_confirm_delete.html', {'farm': farm, 'harvest': harvest})

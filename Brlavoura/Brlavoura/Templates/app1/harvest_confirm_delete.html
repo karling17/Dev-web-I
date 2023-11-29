@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Exclusão da Lavoura</title>
+</head>
+<body>
+    <h1>Excluir Lavoura: {{ harvest.localization }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>Tem certeza de que deseja excluir esta lavoura?</p>
+        <input type="submit" value="Excluir">
+    </form>
+
+    <a href="{% url 'app1:harvest_detail' farm.pk harvest.pk %}">Cancelar</a>
+</body>
+</html>

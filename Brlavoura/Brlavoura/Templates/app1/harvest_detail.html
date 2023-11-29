@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes da Lavoura</title>
+</head>
+<body>
+    <h1>{{ harvest.localization }}</h1>
+    <!-- Exiba aqui os detalhes da lavoura e as safras associadas -->
+
+    <a href="{% url 'app1:farm_detail' farm.pk %}">Voltar para a fazenda</a>
+</body>
+</html>
