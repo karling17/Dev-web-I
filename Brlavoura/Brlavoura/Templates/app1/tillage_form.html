@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Safra</title>
+</head>
+<body>
+    <h1>Criar Safra em {{ harvest.localization }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar Safra</button>
+    </form>
+
+    <a href="{% url 'app1:harvest_detail' farm_id=harvest.farm_id harvest_id=harvest.pk %}">Voltar para a lavoura</a>
+</body>
+</html>

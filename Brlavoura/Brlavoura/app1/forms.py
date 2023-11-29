@@ -11,3 +11,8 @@ class HarvestForm(forms.ModelForm):
     class Meta:
         model = Harvest
         fields = ['localization']
+
+class TillageForm(forms.ModelForm):
+    class Meta:
+        model = Tillage
+        fields = ['enddate', 'health', 'usedseed', 'active']  # ajuste os campos conforme necessário

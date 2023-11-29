@@ -5,8 +5,22 @@
     <title>Detalhes da Lavoura</title>
 </head>
 <body>
-    <h1>{{ harvest.localization }}</h1>
-    <!-- Exiba aqui os detalhes da lavoura e as safras associadas -->
+    <h1>Detalhes da Lavoura: {{ harvest.localization }}</h1>
+    
+    <!-- Link para adicionar nova safra -->
+    <a href="{% url 'app1:tillage_create' farm_id=harvest.farm_id harvest_id=harvest.pk %}">Adicionar Nova Safra</a>
+
+    <h2>Safras</h2>
+    <ul>
+        {% for tillage in harvest.tillages.all %}
+            <li>
+                Safra: {{ tillage.startdate }} até {{ tillage.enddate }}
+                <!-- Adicione mais detalhes da safra aqui se necessário -->
+            </li>
+        {% empty %}
+            <li>Nenhuma safra cadastrada nesta lavoura.</li>
+        {% endfor %}
+    </ul>
 
     <a href="{% url 'app1:farm_detail' farm.pk %}">Voltar para a fazenda</a>
 </body>

@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from app1.models import Tillage, Farm, Harvest
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import FarmForm, HarvestForm
+from .forms import FarmForm, HarvestForm, TillageForm
 from django.urls import reverse
 
 
@@ -71,3 +71,16 @@ def harvest_delete(request, farm_id, harvest_id):
         harvest.delete()
         return redirect('app1:farm_detail', pk=farm_id)
     return render(request, 'app1/harvest_confirm_delete.html', {'farm': farm, 'harvest': harvest})
+
+def tillage_create(request, farm_id, harvest_id):
+    harvest = get_object_or_404(Harvest, pk=harvest_id, farm_id=farm_id)
+    if request.method == 'POST':
+        form = TillageForm(request.POST)
+        if form.is_valid():
+            tillage = form.save(commit=False)
+            tillage.harvestId = harvest  # Certifique-se de que este campo corresponda ao seu modelo
+            tillage.save()
+            return redirect('app1:harvest_detail', farm_id=farm_id, harvest_id=harvest_id)
+    else:
+        form = TillageForm()
+    return render(request, 'app1/tillage_form.html', {'form': form, 'harvest': harvest})
